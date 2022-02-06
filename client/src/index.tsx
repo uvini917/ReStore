@@ -3,13 +3,30 @@ import ReactDOM from "react-dom";
 import "./app/layout/styles.css";
 import App from "./app/layout/App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
+export const history = createBrowserHistory({ window });
+
+// const History = {
+//   navigate: null,
+//   push: (page: any, ...rest: any) => History.navigate(page, ...rest),
+// };
+
+// export default History;
+
+// const NavigateSetter = () => {
+//   History.navigate = useNavigate();
+
+//   return null;
+// };
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HistoryRouter history={history}>
+      {/* <NavigateSetter /> */}
       <App />
-    </BrowserRouter>
+    </HistoryRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
